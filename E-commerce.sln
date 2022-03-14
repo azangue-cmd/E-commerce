@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "E-commerce.Database", "E-commerce.Database\E-commerce.Database.sqlproj", "{E24A9FEA-339F-484D-9A6A-3BB94667886F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-commerce.Repositiry", "E-commerce.Repositiry\E-commerce.Repositiry.csproj", "{C2F8F531-7C5C-4DEB-9453-381BB840C8CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{E24A9FEA-339F-484D-9A6A-3BB94667886F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E24A9FEA-339F-484D-9A6A-3BB94667886F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E24A9FEA-339F-484D-9A6A-3BB94667886F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C2F8F531-7C5C-4DEB-9453-381BB840C8CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F8F531-7C5C-4DEB-9453-381BB840C8CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F8F531-7C5C-4DEB-9453-381BB840C8CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F8F531-7C5C-4DEB-9453-381BB840C8CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
