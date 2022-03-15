@@ -1,10 +1,4 @@
-﻿using E_commerce.Repositiry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace E_commerce.WebApi.Models
+﻿namespace E_commerce.Models
 {
     public class UserModel
     {
@@ -19,7 +13,7 @@ namespace E_commerce.WebApi.Models
                 
         }
 
-        public UserModel(int id, string username, string fullname, string role)
+        public UserModel(int id, string username, string fullname, string role) : this ()
         {
             Id = id;
             Username = username;
@@ -31,12 +25,6 @@ namespace E_commerce.WebApi.Models
             : this(id, username, fullname, role)
         {
             Password = password;
-        }
-
-        public UserModel(User user)
-            :this (user?.Id ?? 0, user?.Username, user?.Fullname, user?.Role)
-        {
-           
         }
     }
 }

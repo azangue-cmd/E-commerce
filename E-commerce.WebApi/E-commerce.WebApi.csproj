@@ -97,8 +97,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CategoryModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,8 +110,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\E-commerce.Models\E-commerce.Models.csproj">
+      <Project>{f05d4f0c-aa35-40b1-b709-99f852c53f4b}</Project>
+      <Name>E-commerce.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\E-commerce.Repositiry\E-commerce.Repositiry.csproj">
       <Project>{C2F8F531-7C5C-4DEB-9453-381BB840C8CC}</Project>
       <Name>E-commerce.Repositiry</Name>

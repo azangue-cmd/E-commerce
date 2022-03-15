@@ -1,10 +1,8 @@
-﻿using E_commerce.Repositiry;
-using E_commerce.WebApi.Models;
+﻿using E_commerce.Models;
+using E_commerce.Repositiry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace E_commerce.WebApi.Controllers
@@ -30,7 +28,7 @@ namespace E_commerce.WebApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(new CategoryModel(category));
+            return base.Ok(MapCategory(category));
         }
 
         [HttpGet]
@@ -41,7 +39,7 @@ namespace E_commerce.WebApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(new CategoryModel(category));
+            return base.Ok(MapCategory(category));
         }
 
         [HttpGet]
@@ -53,7 +51,8 @@ namespace E_commerce.WebApi.Controllers
                    x =>
                    x.Name.ToLower().Contains(searchValue)
                 );
-            return Ok(categories.Select(x => new CategoryModel(x)).ToArray());
+            return Ok
+                (categories.Select(x => MapCategory(x)).ToArray());
         }
 
         [HttpPost]
@@ -73,7 +72,7 @@ namespace E_commerce.WebApi.Controllers
                     );
 
                 category = categoryRepository.Add(category);
-                return Ok(new CategoryModel(category));
+                return Ok(MapCategory(category));
 
             }
 
@@ -105,7 +104,7 @@ namespace E_commerce.WebApi.Controllers
                     );
 
                 category = categoryRepository.Set(category);
-                return Ok(new CategoryModel(category));
+                return base.Ok(MapCategory(category));
 
             }
 
@@ -128,10 +127,27 @@ namespace E_commerce.WebApi.Controllers
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-           
+
             var category = categoryRepository.Delete(id);
-            return Ok(new CategoryModel(category));
+            return base.Ok(MapCategory(category));
         }
 
+        private CategoryModel MapCategory(Category category)
+        {
+            return new CategoryModel
+              (
+                 category.Id,
+                 category.Name,
+                 category.UserId,
+                 new UserModel
+                   (
+                     category.User.Id,
+                     category.User.Username,
+                     category.User.Fullname,
+                     category.User.Role
+                   )
+
+               );
+        }
     }
 }

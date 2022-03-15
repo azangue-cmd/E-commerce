@@ -1,5 +1,5 @@
-﻿using E_commerce.Repositiry;
-using E_commerce.WebApi.Models;
+﻿using E_commerce.Models;
+using E_commerce.Repositiry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +30,10 @@ namespace E_commerce.WebApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(new UserModel(user));
+            return Ok(MapUser(user));
         }
+
+        
 
         [HttpGet]
         public IHttpActionResult Get (string username)
@@ -41,7 +43,7 @@ namespace E_commerce.WebApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(new UserModel(user));
+            return Ok(MapUser(user));
         }
 
         [HttpGet]
@@ -52,7 +54,7 @@ namespace E_commerce.WebApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(new UserModel(user));
+            return Ok(MapUser(user));
         }
 
         [HttpPost]
@@ -74,7 +76,7 @@ namespace E_commerce.WebApi.Controllers
                     model.Role
                     );
                 user = userRepository.Add(user);
-                return Ok(new UserModel(user));
+                return Ok(MapUser(user));
             }
 
 
@@ -107,7 +109,7 @@ namespace E_commerce.WebApi.Controllers
                     model.Role
                     );
                 user = userRepository.Set(user);
-                return Ok(new UserModel(user));
+                return Ok(MapUser(user));
 
             }
 
@@ -126,6 +128,17 @@ namespace E_commerce.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
 
+        }
+
+        private UserModel MapUser(User user)
+        {
+            return new UserModel
+                                (
+                                    user.Id,
+                                    user.Username,
+                                    user.Fullname,
+                                    user.Role
+                                );
         }
 
     }
