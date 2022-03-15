@@ -24,7 +24,7 @@ namespace E_commerce.Repositiry
         public string Username { get; set; }
         public string Password { get; set; }
         public string Fullname { get; set; }
-        public byte[] Role { get; set; }
+        public string Role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Category> Categories { get; set; }

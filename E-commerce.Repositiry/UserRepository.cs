@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace E_commerce.Repositiry
 {
-    internal class UserRepository
+    public class UserRepository
     {
         private EcommerceEntities db;
         public UserRepository ()
@@ -66,20 +66,22 @@ namespace E_commerce.Repositiry
                 throw new ArgumentNullException(nameof(user));
             }
 
-            var oldUser = new EcommerceEntities().Users.Find(user.Id);
+            var currentDb = new EcommerceEntities();
+
+            var oldUser = currentDb.Users.Find(user.Id);
             if (oldUser == null)
             {
                 throw new KeyNotFoundException($"User not found !!!!!!");
             }
 
 
-            var u = Get(user.Username);
+            var u = currentDb.Users.FirstOrDefault( x => x.Username == user.Username);
             if (u != null && u.Id != oldUser.Id)
             {
                 throw new DuplicateWaitObjectException($"Username { user.Username } already exist !!!!!!");
             }
 
-            user.Password = oldUser.Password != user.Password ? CreateMD5Hash(user.Password) : oldUser.Password;
+            user.Password = !String.IsNullOrEmpty(user.Password) && oldUser.Password != user.Password ? CreateMD5Hash(user.Password) : oldUser.Password;
 
             //user = db.Users.Add(user);
             db.Entry(user).State = System.Data.Entity.EntityState.Modified;
@@ -88,7 +90,7 @@ namespace E_commerce.Repositiry
             return user;
         }
 
-        private static string CreateMD5Hash (string input)
+        private  string CreateMD5Hash (string input)
         {
             // Step 1, calculate MD5 hash from input
             MD5 md5 = System.Security.Cryptography.MD5.Create();

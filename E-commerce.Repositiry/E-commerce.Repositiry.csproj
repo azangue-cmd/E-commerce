@@ -68,6 +68,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>E-commerceEf.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EntiteisPartial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs">
       <DependentUpon>E-commerceEf.tt</DependentUpon>
