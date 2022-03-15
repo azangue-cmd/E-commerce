@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace E_commerce.Repositiry
 {
-    internal class CategoryRepository
+    public class CategoryRepository
     {
         private EcommerceEntities db;
         public CategoryRepository()
@@ -52,14 +52,15 @@ namespace E_commerce.Repositiry
                 throw new ArgumentNullException(nameof(category));
             }
 
-            var oldUser = new EcommerceEntities().Users.Find(category.Id);
+            var currentDb = new EcommerceEntities();
+            var oldUser = currentDb.Users.Find(category.Id);
             if (oldUser == null)
             {
                 throw new KeyNotFoundException($"Category not found !!!!!!");
             }
 
 
-            var u = Get(category.Name);
+            var u = currentDb.Categories.FirstOrDefault(X => X.Name == category.Name);
             if (u != null && u.Id != oldUser.Id)
             {
                 throw new DuplicateWaitObjectException($"Category name { category.Name } already exist !!!!!!");
