@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace E_commerce.Services
 {
-    internal class UserService
+    public class UserService
     {
        private readonly HttpClient client;
         public UserService(string baseAddress)
@@ -17,10 +17,10 @@ namespace E_commerce.Services
             client.BaseAddress = new Uri(baseAddress);
         }
 
-        public async Task<UserModel> Get(int id)
+        public async Task<UserModel> GetAsync(int id)
         {
             //http://localhost:8180/api
-            string url = $"Users/{id}";
+            string url = $"/Users/{id}";
             var response = await client.GetAsync(url);
             var data = await response.Content.ReadAsStringAsync();
 
@@ -39,10 +39,10 @@ namespace E_commerce.Services
         }
 
 
-        public async Task<UserModel> Login (string username, string password)
+        public async Task<UserModel> LoginAsync (string username, string password)
         {
             //http://localhost:8180/api
-            string url = $"Users/username = {username} & password = {password}";
+            string url = $"Users?username={username}&password={password}";
             var response = await client.GetAsync(url);
             var data = await response.Content.ReadAsStringAsync();
 
@@ -60,7 +60,7 @@ namespace E_commerce.Services
             }
         }
 
-        public async Task<UserModel> Create(UserModel user)
+        public async Task<UserModel> CreateAsync(UserModel user)
         {
             //http://localhost:8180/api
             string url = $"/Users";
@@ -88,7 +88,7 @@ namespace E_commerce.Services
         }
 
 
-        public async Task<UserModel> Update(UserModel user)
+        public async Task<UserModel> UpdateAsync(UserModel user)
         {
             //http://localhost:8180/api
             string url = $"/Users";

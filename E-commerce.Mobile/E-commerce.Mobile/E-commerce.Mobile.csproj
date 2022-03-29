@@ -11,6 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\E-commerce.Services\E-commerce.Services.csproj" />
   </ItemGroup>
 </Project>
